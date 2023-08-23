@@ -1,0 +1,9 @@
+FROM dockerdist.bdmd.com/base/alpine-go:v1.0
+LABEL description="Qcaudit API Service Gateway" 
+
+ADD qcaudit-gateway /bin/
+RUN chmod a+x /bin/qcaudit-gateway
+# Expose
+EXPOSE 8024
+
+ENTRYPOINT [ "qcaudit-gateway" ]

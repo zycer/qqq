@@ -1,0 +1,1803 @@
+# 字段注释
+# choice 可选项 - label 选项名称 value 值
+# default_value 默认值 若为可选项 默认值应为 选项的label
+# message 备注信息
+# name 中文名称
+# scope 生效范围
+# type 类型 radio: 单选 multi: 多选 string: 字符串 date: 日期
+
+qc.doctor.case.display.rule:
+  choice:
+  - label: 只有责任医生显示；
+    value: '1'
+  - label: 所有有提交病历申请权限的医生都显示；
+    value: '2'
+  default_value: 所有有提交病历申请权限的医生都显示；
+  message: '若1，只有责任医生显示，若2，所有有提交病历申请权限的医生都显示'
+  name: 待申请病历显示规则
+  scope: 医生端
+  type: radio
+
+qc.doctor.score.display:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 不显示
+    value: '2'
+  default_value: 不显示
+  message: 若1，则显示问题扣分项和总分数/等级；若2，不显示扣分项和总分数/等级；
+  name: 是否显示分数和等级
+  scope: 医生端
+  type: radio
+
+qc.doctor.extract.display:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 不显示
+    value: '2'
+  default_value: 不显示
+  message: 若1，则整改提醒中窗显示抽检病历；若1，则整改提醒中窗不显示抽检病历；
+  name: 是否需要显示抽检病历
+  scope: 医生端
+  type: radio
+
+qc.doctor.attendDoctor.display:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 不显示
+    value: '2'
+  default_value: 显示
+  message: 若1，正常显示医生姓名；若2，医生姓名位置显示节点名称；
+  name: 医生姓名是否显示
+  scope: 医生端
+  type: radio
+
+qc.doctor.tabs:
+  choice:
+  - label: 病历质控
+    value: quality
+  - label: 智能辅助决策
+    value: single
+  - label: cdss
+    value: cdss
+  - label: 单病种填报
+    value: report
+  - label: 单病种控费
+    value: controlCost
+  - label: 单病种质控
+    value: singleQuality
+  default_value: 病历质控
+  message: 多选，选几在医生端插件右侧就显示哪几个
+  name: 页签显示哪几个
+  scope: 医生端
+  type: multi
+
+qc.doctor.stats.button.display:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 不显示
+    value: '2'
+  default_value: 不显示
+  message: 若1，则插件底部的统计按钮显示；若2，则插件底部的统计按钮不显示；
+  name: 统计按钮是否显示
+  scope: 医生端
+  type: radio
+
+qc.doctor.knowledge.display:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 不显示
+    value: '2'
+  default_value: 不显示
+  message: 若1，则插件底部的知识库按钮+中窗顶部知识库放大镜icon都显示；若2，则插件底部的知识库按钮+中窗顶部知识库放大镜icon都不显示。
+  name: 知识库是否显示
+  scope: 医生端
+  type: radio
+
+qc.doctor.patient.portrait.display:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 不显示
+    value: '2'
+  default_value: 不显示
+  message: 若1，则病历质控问题列表和单病种填报的任务明细页面中的患者小icon里都去掉【患者画像】按钮
+  name: 患者画像是否显示
+  scope: 医生端
+  type: radio
+
+qc.doctor.veto:
+  choice:
+  - label: 可提交
+    value: '1'
+  - label: 不可提交
+    value: '2'
+  default_value: 可提交
+  message: 若1，则病历低于90也可提交；若2，则病历低于90不可提交；
+  name: 低于90分病历是否可提交/打印
+  scope: 医生端
+  type: radio
+
+qc.doctor.problems.pop:
+  choice:
+  - label: 弹
+    value: '1'
+  - label: 不弹
+    value: '2'
+  default_value: 不弹
+  message: 若2，则文书书写页面，初次打开，保存，有没有问题都不会展开中窗
+  name: 病历有问题是否自动展开中窗
+  scope: 医生端
+  type: radio
+
+qc.1st.online.publish.timestamp:
+  default_value: ''
+  message: 医生端出院未提交页面仅显示该日期后出院并且未提交的病历；管理端质控数据仅显示该日期后出院并符合各节点显示逻辑的病历；
+  name: 第一次线上发布时间
+  scope: 医生端/管理端
+  type: date
+
+wardFlag:
+  choice:
+  - label: 显示楼层
+    value: '1'
+  - label: 显示病区
+    value: '2'
+  default_value: 显示病区
+  message: 查询条件和列同步走这个配置。
+  name: 病区&楼层显示
+  scope: 管理端
+  type: radio
+
+attendingFlag:
+  choice:
+  - label: 使用Attending
+    value: '1'
+  - label: 使用责任医生
+    value: '2'
+  default_value: 使用责任医生
+  message: 查询条件和列同步走这个配置。
+  name: 列表医生显示规则
+  scope: 管理端
+  type: radio
+
+safeKeepingFlag:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 单选，配置的1，封存和取消封存可用；配置2，封存和取消封存隐藏；
+  name: 是否需要封存功能
+  scope: 管理端
+  type: radio
+
+qc.patientId.name:
+  choice:
+  - label: 病历号
+    value: '病历号'
+  - label: 住院号
+    value: '住院号'
+  - label: 病案号
+    value: '病案号'
+  default_value: ''
+  message: 单选，控制每个页面病历号的名称显示
+  name: 病历号/住院号/病案号
+  scope: 管理端
+  type: radio
+
+qc.stats.dimension:
+  choice:
+  - label: 按科室统计
+    value: '1'
+  - label: 按病区统计
+    value: '2'
+  default_value: 按科室统计
+  message: 若1，列表中，列名称+查询条件+行汇总数据的显示都走科室；若2，列表中，列名称+查询条件+行汇总数据的显示都走病区；
+  name: 科室统计维度
+  scope: 管理端
+  type: radio
+
+qc.archived.step:
+  choice:
+  - label: 医生提交病历；
+    value: '1'
+  - label: 科室审核通过；
+    value: '2'
+  - label: 病案审核通过；
+    value: '3'
+  - label: 编码审核通过；
+    value: '4'
+  - label: 专家审核通过；
+    value: '5'
+  - label: 编码/病案都审核通过；同时院级病案得分以专家和编码和病案三个节点共同判断；
+    value: '6'
+  default_value: 病案审核通过；
+  message: 可多选，配置的归档节点的通过算已归档。
+  name: 节点审核通过算归档
+  scope: 管理端
+  type: multi
+
+qc.archived.problem.display:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 隐藏
+    value: '2'
+  default_value: 显示
+  message: 如果是隐藏，则质控列表或审核列表，当前节点审核通过后对应页面问题不显示，同时列表的问题数量也要为0
+  name: 归档后问题是否显示
+  scope: 管理端
+  type: radio
+
+doctorFRFlag:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 隐藏
+    value: '2'
+  default_value: 隐藏
+  message: '是否需要显示【F/R勾选】，查询条件和列表一起配置'
+  name: 【F/R勾选】查询条件和列表一起配置
+  scope: 管理端
+  type: radio
+
+qc.user.password.complexity:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: '2'
+  default_value: 是
+  message: 若1，则密码校验格式用复杂版本；复杂版本密码规则：至少8位，其中数字、大写字母、小写字母、特殊字符至少包含以上三种。初始默认Ai123456。若2，则密码校验用简单版本；
+  name: 是否使用安全密码
+  scope: 管理端
+  type: radio
+
+qc.branch.display:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: '2'
+  default_value: 是
+  message: 若1，各页面的【院区】查询和列表显示；若2，各页面的【院区】查询和列表隐藏；
+  name: 是否分院区
+  scope: 管理端
+  type: radio
+
+qc.emrstatus.display:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: '审核页面-中间文书的未保存、已保存、已审核状态，是否需要显示'
+  name: 审核页面-中间文书的未保存、已保存、已审核状态，是否需要显示
+  scope: 管理端
+  type: radio
+
+qc.detail.monopathy:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，全局质控列表和编码审核列表中右侧显示单病种上报功能；若2，全局单病种上报不显示；
+  name: 是否需要单病种上报功能
+  scope: 管理端
+  type: radio
+
+qc.detail.problemlist:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，全局质控列表和编码审核列表中右侧显示病历质控本身的问题列表功能；若2，全局问题列表不显示；
+  name: 是否需要病历质控问题列表功能
+  scope: 管理端
+  type: radio
+
+qc.detail.revoke.refuse:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，则四个节点的撤销驳回正常；若2，则撤销驳回按钮隐藏；
+  name: 是否需要撤销驳回功能
+  scope: 管理端
+  type: radio
+
+qc.emr.sort:
+  choice:
+  - label: 按目录
+    value: '1'
+  - label: 按时间
+    value: '2'
+  default_value: 按目录
+  message: 若1，则四个节点的审核页面，中间文书排序同左侧目录一致，先按类型后按时间；若2，则四个节点的审核页面，中间文书排序采用书写时间升序。
+  name: 审核页面：中间文书排序配置
+  scope: 管理端
+  type: radio
+
+qc.assign.dimension:
+  choice:
+  - label: 科室分配
+    value: '1'
+  - label: 病区分配
+    value: '2'
+  default_value: 科室分配
+  message: 若1，则四个节点的抽取列表的查看抽取历史页面，用科室分配；若2，则四个节点的抽取列表的查看抽取历史页面，用病区分配；
+  name: 查看抽取历史：分配按钮是用病区分配还是用科室分配
+  scope: 管理端
+  type: radio
+
+qc.department:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若2，则科室质控下的抽取、质控、审核列表都不给
+  name: 是否需要科室质控节点
+  scope: 管理端
+  type: radio
+
+qc.department.score.flag:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，审核页面给分数和等级显示，同时各列表上【等级】正常显示；同时医生端对应节点退回的问题显示分数和等级。若2，审核页面不给分数和等级显示，同时各列表上【等级】显示“- -”；
+  name: 科室质控是否显示分数和等级
+  scope: 管理端
+  type: radio
+
+qc.department.case.scope.running:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 科室质控是否需要运行病历，如果没有抽取环节，配置无效
+  name: 科室质控是否需要抽取运行病历
+  scope: 管理端
+  type: radio
+
+qc.department.case.scope.final:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 科室质控是否需要终末病历，如果没有抽取环节，配置无效
+  name: 科室质控是否需要抽取终末病历
+  scope: 管理端
+  type: radio
+
+qc.department.case.scope.archived:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 科室质控是否需要归档病历，如果没有抽取环节，配置无效
+  name: 科室质控是否需要抽取归档病历
+  scope: 管理端
+  type: radio
+
+qc.department.extract:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，给【抽取病历】菜单权限；若2，不给【抽取病历】菜单权限；
+  name: 科室质控是否需要抽取功能
+  scope: 管理端
+  type: radio
+
+qc.department.extract.auto.assign:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，给【抽取病历】中分配功能的自动分配功能；若2，不给【抽取病历】中分配功能的自动分配功能；
+  name: 科室质控是否需要自动分配功能
+  scope: 管理端
+  type: radio
+
+qc.department.case.notapply.audit:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，【质控列表】多一个未申请状态，并显示未申请的病历，质控审核页面允许驳回。
+  name: 科室质控已出院未申请状态是否需要质控
+  scope: 管理端
+  type: radio
+
+qc.department.final:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，给【审核列表】菜单权限；若2，不给【审核列表】菜单权限；
+  name: 科室值是否需要审核功能
+  scope: 管理端
+  type: radio
+
+qc.department.finish.notify.doctor:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，医生端通知医生；若2，医生端不通知医生；
+  name: 科室质控完成质控或审核通过时，是否需要通知医生
+  scope: 管理端
+  type: radio
+
+qc.department.private:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: '2'
+  default_value: 否
+  message: （这功能废了）若1，科室质控下的三个页面的【科室】查询条件都只能选择当前登录科室，尤其要注意，抽取时智能抽取本科室病历，抽取历史弹框中要过滤只能查看本科室的历史；若2，科室质控下的三个页面中的【科室】查询条件可以选择全部科室；
+  name: 科室是否仅限质控本科病历
+  scope: 管理端
+  type: radio
+
+qc.department.precondition:
+  choice:
+  - label: department
+    value: department
+  - label: hospital
+    value: hospital
+  - label: firstpage
+    value: firstpage
+  - label: expert
+    value: expert
+  default_value: ''
+  message: 配置前置环节，过滤列表数据
+  name: 科室质控前置环节，没有前置为空，前置有多个用逗号分隔（参考切记切记）
+  scope: 管理端
+  type: multi
+
+qc.department.addReturn:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: '2'
+  default_value: 否
+  message: 若1，则质控列表的审核页面，已退回状态下有追加退回按钮
+  name: 科室质控是否需要追加退回按钮
+  scope: 管理端
+  type: radio
+
+qc.hospital:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若2，则病案质控下的抽取、质控、审核列表都不给
+  name: 是否需要病案质控节点
+  scope: 管理端
+  type: radio
+
+qc.hospital.score.flag:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，审核页面给分数和等级显示，同时各列表上【等级】正常显示；若2，审核页面不给分数和等级显示，同时各列表上【等级】显示“- -”；
+  name: 病案质控是否显示分数和等级
+  scope: 管理端
+  type: radio
+
+qc.hospital.case.scope.running:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 病案质控是否需要运行病历，如果没有抽取环节，配置无效
+  name: 病案质控是否需要抽取运行病历
+  scope: 管理端
+  type: radio
+
+qc.hospital.case.scope.final:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 病案质控是否需要终末病例，如果没有抽取环节，配置无效
+  name: 病案质控是否需要抽取终末病例
+  scope: 管理端
+  type: radio
+
+qc.hospital.case.scope.archived:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 病案质控是否需要归档病历，如果没有抽取环节，配置无效
+  name: 病案质控是否需要抽取归档病历
+  scope: 管理端
+  type: radio
+
+qc.hospital.extract:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，给【抽取病历】菜单权限；若2，不给【抽取病历】菜单权限；
+  name: 病案质控是否需要抽取功能
+  scope: 管理端
+  type: radio
+
+qc.hospital.extract.auto.assign:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，给【抽取病历】中分配功能的自动分配功能；若2，不给【抽取病历】中分配功能的自动分配功能；
+  name: 病案质控是否需要自动分配功能
+  scope: 管理端
+  type: radio
+
+qc.hospital.case.notapply.audit:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，【质控列表】多一个未申请状态，并显示未申请的病历，质控审核页面允许驳回。
+  name: 病案质控已出院未申请状态是否需要质控
+  scope: 管理端
+  type: radio
+
+qc.hospital.finish.notify.doctor:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，医生端通知医生；若2，医生端不通知医生；
+  name: 病案质控完成质控或审核通过时，是否需要通知医生
+  scope: 管理端
+  type: radio
+
+qc.hospital.final:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，给【审核列表】菜单权限；若2，不给【审核列表】菜单权限；
+  name: 病案质控是否需要审核功能
+  scope: 管理端
+  type: radio
+
+qc.hospital.precondition:
+  choice:
+  - label: department
+    value: department
+  - label: hospital
+    value: hospital
+  - label: firstpage
+    value: firstpage
+  - label: expert
+    value: expert
+  default_value: ''
+  message: 配置前置环节，过滤列表数据
+  name: 病案质控前置环节，没有前置为空，前置有多个用逗号分隔（参考切记切记）
+  scope: 管理端
+  type: multi
+
+qc.hospital.addReturn:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: '2'
+  default_value: 否
+  message: ''
+  name: 病案质控是否需要追加退回按钮
+  scope: 管理端
+  type: radio
+
+qc.firstpage:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若2，则病案质控下的抽取、质控、审核列表都不给
+  name: 是否需要编码质控节点
+  scope: 管理端
+  type: radio
+
+qc.firstpage.score.flag:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，审核页面给分数和等级显示，同时各列表上【等级】正常显示；若2，审核页面不给分数和等级显示，同时各列表上【等级】显示“- -”；
+  name: 编码质控是否显示分数和等级
+  scope: 管理端
+  type: radio
+
+qc.firstpage.case.scope.running:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 是否需要质控运行病历，如果没有抽取环节，配置无效
+  name: 编码质控是否需要抽取运行病历
+  scope: 管理端
+  type: radio
+
+qc.firstpage.case.scope.final:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 是否需要质控终末病历，如果没有抽取环节，配置无效
+  name: 编码质控是否需要抽取终末病历
+  scope: 管理端
+  type: radio
+
+qc.firstpage.case.scope.archived:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 是否需要质控归档病历，如果没有抽取环节，配置无效
+  name: 编码质控是否需要抽取归档病历
+  scope: 管理端
+  type: radio
+
+qc.firstpage.extract:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，给【抽取病历】菜单权限；若2，不给【抽取病历】菜单权限；
+  name: 编码质控是否需要抽取功能
+  scope: 管理端
+  type: radio
+
+qc.firstpage.extract.auto.assign:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，给【抽取病历】中分配功能的自动分配功能；若2，不给【抽取病历】中分配功能的自动分配功能；
+  name: 编码质控是否需要自动分配功能
+  scope: 管理端
+  type: radio
+
+qc.firstpage.final:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，给【审核列表】菜单权限；若2，不给【审核列表】菜单权限；
+  name: 编码质控是否需要审核功能
+  scope: 管理端
+  type: radio
+
+qc.firstpage.case.notapply.audit:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，【质控列表】多一个未申请状态，并显示未申请的病历，质控审核页面允许驳回。
+  name: 编码质控已出院未申请状态是否需要质控
+  scope: 管理端
+  type: radio
+
+qc.firstpage.medcare:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，编码质控列表和编码审核列表中显示医保结算清单；若2，医保结算清单不显示；
+  name: 编码质控是否需要医保结算清单
+  scope: 管理端
+  type: radio
+
+qc.firstpage.drgs:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，编码质控列表和编码审核列表中右侧显示DRGs预分组功能；若2，DRGs预分组功能不显示；
+  name: 编码质控是否需要DGRs分组功能
+  scope: 管理端
+  type: radio
+
+qc.firstpage.finish.notify.doctor:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，医生端通知医生；若2，医生端不通知医生；
+  name: 编码质控完成质控或审核通过时，是否需要通知医生
+  scope: 管理端
+  type: radio
+
+qc.firstpage.precondition:
+  choice:
+  - label: department
+    value: department
+  - label: hospital
+    value: hospital
+  - label: firstpage
+    value: firstpage
+  - label: expert
+    value: expert
+  default_value: ''
+  message: 配置前置环节，过滤列表数据
+  name: 编码质控前置环节，没有前置为空，前置有多个用逗号分隔（参考切记切记）
+  scope: 管理端
+  type: multi
+
+qc.firstpage.code.need:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，则首页编码节点的审核页面，有智能编码按钮和对应的已编码状态icon；若2，则首页编码节点的审核页面，无智能编码按钮和对应的已编码状态icon；
+  name: 编码质控是否需要智能编码
+  scope: 管理端
+  type: radio
+
+qc.firstpage.addReturn:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: '2'
+  default_value: 否
+  message: '编码质控是否需要追加退回按钮'
+  name: 编码质控是否需要追加退回按钮
+  scope: 管理端
+  type: radio
+
+qc.expert:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若2，则病案质控下的抽取、质控、审核列表都不给
+  name: 是否需要专家质控节点
+  scope: 管理端
+  type: radio
+
+qc.expert.score.flag:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，审核页面给分数和等级显示，同时各列表上【等级】正常显示；若2，审核页面不给分数和等级显示，同时各列表上【等级】显示“- -”；
+  name: 专家质控是否显示分数和等级
+  scope: 管理端
+  type: radio
+
+qc.active.score.flag:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，事中质控页面显示分数和等级；
+  name: 事中质控是否显示分数和等级
+  scope: 管理端
+  type: radio
+
+qc.expert.case.scope.running:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 专家质控是否需要抽取运行病历，如果没有抽取环节，配置无效
+  name: 专家质控是否需要抽取运行病历
+  scope: 管理端
+  type: radio
+
+qc.expert.case.scope.final:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 专家质控是否需要抽取终末病历，如果没有抽取环节，配置无效
+  name: 专家质控是否需要抽取终末病历
+  scope: 管理端
+  type: radio
+
+qc.expert.case.scope.archived:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 专家质控是否需要抽取归档病历，如果没有抽取环节，配置无效
+  name: 专家质控是否需要抽取归档病历
+  scope: 管理端
+  type: radio
+
+qc.expert.extract:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，给【抽取病历】菜单权限；若2，不给【抽取病历】菜单权限；
+  name: 专家质控是否需要抽取功能
+  scope: 管理端
+  type: radio
+
+qc.expert.case.notapply.audit:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，【质控列表】多一个未申请状态，并显示未申请的病历，质控审核页面允许驳回。
+  name: 专家质控已出院未申请状态是否需要质控
+  scope: 管理端
+  type: radio
+
+qc.expert.extract.auto.assign:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，给【抽取病历】中分配功能的自动分配功能；若2，不给【抽取病历】中分配功能的自动分配功能；
+  name: 专家质控是否需要自动分配功能
+  scope: 管理端
+  type: radio
+
+qc.expert.finish.notify.doctor:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 不需要
+  message: 若1，医生端通知医生；若2，医生端不通知医生；
+  name: 专家完成质控或审核通过时，是否需要通知医生
+  scope: 管理端
+  type: radio
+
+qc.expert.final:
+  choice:
+  - label: 需要
+    value: '1'
+  - label: 不需要
+    value: '2'
+  default_value: 需要
+  message: 若1，给【审核列表】菜单权限；若2，不给【审核列表】菜单权限；
+  name: 专家质控是否需要审核功能
+  scope: 管理端
+  type: radio
+
+qc.expert.precondition:
+  choice:
+  - label: department
+    value: department
+  - label: hospital
+    value: hospital
+  - label: firstpage
+    value: firstpage
+  - label: expert
+    value: expert
+  default_value: ''
+  message: 配置前置环节，过滤列表数据
+  name: 专家质控前置环节，没有前置为空，前置有多个用逗号分隔（参考切记切记）
+  scope: 管理端
+  type: multi
+
+qc.expert.addReturn:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: '2'
+  default_value: 否
+  message: '专家质控是否需要追加退回按钮'
+  name: 专家质控是否需要追加退回按钮
+  scope: 管理端
+  type: radio
+
+qc.dept.refuse.allowedStatus:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: ''
+  default_value: 是
+  message: '科室质控环节是否允许退回'
+  name: 科室质控环节是否允许退回
+  scope: 管理端
+  type: radio
+
+qc.hospital.refuse.allowedStatus:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: ''
+  default_value: 是
+  message: '病案质控环节是否允许退回'
+  name: 病案质控环节是否允许退回
+  scope: 管理端
+  type: radio
+
+qc.firstpage.refuse.allowedStatus:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: ''
+  default_value: 是
+  message: '编码质控环节是否允许退回'
+  name: 编码质控环节是否允许退回
+  scope: 管理端
+  type: radio
+
+qc.expert.refuse.allowedStatus:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: ''
+  default_value: 是
+  message: '专家质控环节是否允许退回'
+  name: 专家质控环节是否允许退回
+  scope: 管理端
+  type: radio
+
+qc.menu.enabled:
+  choice:
+  - label: 是
+    value: ''
+  - label: 否
+    value: ''
+  default_value: 否
+  message: '这个配置已经不用了'
+  name: 旧版本菜单权限控制
+  scope: 管理端
+  type: radio
+
+qc.group.department.archive:
+  choice:
+  - label: 1
+    value: '1'
+  - label: 2
+    value: '2'
+  - label: 3
+    value: '3'
+  - label: 4
+    value: '4'
+  - label: 5
+    value: '5'
+  default_value: 1
+  message: '科室质控环节规则组id'
+  name: 科室质控环节规则组id
+  type: radio
+
+qc.group.hospital.archive:
+  choice:
+  - label: 1
+    value: '1'
+  - label: 2
+    value: '2'
+  - label: 3
+    value: '3'
+  - label: 4
+    value: '4'
+  - label: 5
+    value: '5'
+  default_value: 2
+  message: '病案质控环节规则组id'
+  name: 病案质控环节规则组id
+  type: radio
+
+qc.group.firstpage.archive:
+  choice:
+  - label: 1
+    value: '1'
+  - label: 2
+    value: '2'
+  - label: 3
+    value: '3'
+  - label: 4
+    value: '4'
+  - label: 5
+    value: '5'
+  default_value: 3
+  message: '编码质控环节规则组id'
+  name: 编码质控环节规则组id
+  type: radio
+
+qc.group.expert.archive:
+  choice:
+  - label: 1
+    value: '1'
+  - label: 2
+    value: '2'
+  - label: 3
+    value: '3'
+  - label: 4
+    value: '4'
+  - label: 5
+    value: '5'
+  default_value: 4
+  message: '专家质控环节规则组id'
+  name: 专家质控环节规则组id
+  type: radio
+
+qc.group.active.active:
+  choice:
+  - label: 1
+    value: '1'
+  - label: 2
+    value: '2'
+  - label: 3
+    value: '3'
+  - label: 4
+    value: '4'
+  - label: 5
+    value: '5'
+  default_value: 5
+  message: '事中质控环节规则组id'
+  name: 事中质控环节规则组id
+  type: radio
+
+qc.medicalAdvice.display:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: ''
+  default_value: 是
+  message: '区域质控审核详情页面是否显示医嘱'
+  name: 区域质控审核详情页面是否显示医嘱
+  scope: 管理端
+  type: radio
+
+qc.score.report.template:
+  default_value: 'zhejiang2021'
+  message: '质控评分表模板编号'
+  name: 质控评分表模板编号
+  scope: 管理端
+  type: string
+
+qc.doctor.blockip.all:
+  choice:
+  - label: 是
+    value: 'on'
+  - label: 否
+    value: 'off'
+  default_value: 是
+  message: '医生端插件是否显示'
+  name: 医生端插件是否显示
+  scope: 管理端
+  type: radio
+
+qc.knowledge.exist:
+  choice:
+  - label: 是
+    value: '1'
+  - label: 否
+    value: ''
+  default_value: 是
+  message: '医生端知识库是否显示'
+  name: 医生端知识库是否显示
+  scope: 医生端
+  type: radio
+
+qc.stats.level:
+  choice:
+  - label: 甲级,乙级,丙级
+    value: '甲级,乙级,丙级'
+  - label: 优秀,合格,不合格
+    value: '优秀,合格,不合格'
+  default_value: 甲级,乙级,丙级
+  message: '统计成绩级别分类'
+  name: 统计成绩级别
+  scope: 管理端
+  type: radio
+
+cdss.third.type:
+  choice:
+  - label: 智能检验
+    value: '智能检验'
+  - label: 智能检查
+    value: '智能检查'
+  - label: 智能手术
+    value: '智能手术'
+  - label: 合理用药
+    value: '合理用药'
+  default_value: 智能检验,智能检查,智能手术,合理用药
+  message: 'cdss 上线的三级类型'
+  name: cdss 上线的三级类型
+  scope: 管理端
+  type: multi
+
+cdss.online.type:
+  choice:
+  - label: 全部
+    value: '0'
+  - label: 通用
+    value: '1'
+  - label: 单病种
+    value: '2'
+  default_value: 全部
+  message: 'cdss上线类型'
+  name: cdss上线类型
+  scope: 管理端
+  type: radio
+
+cdss.rule.list.subType:
+  choice:
+  - label: 智能检验
+    value: '智能检验'
+  - label: 智能检查
+    value: '智能检查'
+  - label: 智能手术
+    value: '智能手术'
+  - label: 合理用药
+    value: '合理用药'
+  - label: 病情变化预警
+    value: '病情变化预警'
+  - label: 特殊疾病预警
+    value: '特殊疾病预警'
+  - label: 推荐检验/检查
+    value: '推荐检验/检查'
+  - label: 推荐治疗方案
+    value: '推荐治疗方案'
+  - label: 符合单病种
+    value: '符合单病种'
+  - label: 单病种推荐
+    value: '单病种推荐'
+  - label: 知识速递
+    value: '知识速递'
+  - label: 相似病例
+    value: '相似病例'
+  - label: 报告解读
+    value: '报告解读'
+  default_value: 智能检验,智能检查,智能手术,合理用药,病情变化预警,特殊疾病预警,推荐检验/检查,推荐治疗方案,符合单病种,单病种推荐,知识速递,相似病例,报告解读
+  message: 'cdss规则细项列表分类'
+  name: cdss规则细项列表分类
+  scope: 管理端
+  type: multi
+
+cdss.action.log.type:
+  choice:
+  - label: 任务列表
+    value: '任务列表'
+  - label: 知识库
+    value: '知识库'
+  - label: 患者画像
+    value: '患者画像'
+  default_value: 任务列表,知识库
+  message: 'cdss动作日志记录类型'
+  name: cdss动作日志记录类型
+  scope: 医生端
+  type: multi
+
+qc.case.group.flag:
+  choice:
+    - label: 是
+      value: '1'
+    - label: 否
+      value: '0'
+  default_value: 是
+  message: ''
+  name: 病历质控病历列表筛选是否需要诊疗组字段
+  scope: 管理端
+  type: radio
+
+qc.stats.defect.tab.type:
+  choice:
+    - label: 科室
+      value: '科室'
+    - label: 病区
+      value: '病区'
+  default_value: 科室,病区
+  message: '病历质控缺陷统计率页签类型'
+  name: 病历质控缺陷统计率页签类型
+  scope: 管理端
+  type: multi
+
+cdss.rule.formula.flag:
+  choice:
+    - label: 是
+      value: '1'
+    - label: 否
+      value: '0'
+  default_value: 是
+  message: 'cdss医生端规则卡片上方量表趋势icon是否存在标记'
+  name: cdss医生端规则卡片上方量表趋势icon是否存在标记
+  scope: 医生端
+  type: radio
+
+qc.doctor.submit.notify:
+  choice:
+    - label: 提示
+      value: '1'
+    - label: 不提示
+      value: '2'
+  default_value: 不提示
+  message: '医生端提交申请的结果是否要弹窗提示'
+  name: 医生端提交申请的结果是否要弹窗提示
+  type: radio
+
+qc.mrqrate.score:
+  default_value: '92'
+  message: '配置病历合格分数'
+  name: 配置病历合格分数
+  scope: 管理端
+  type: string
+
+qc.stats.dept.archive:
+  choice:
+    - label: 需要
+      value: '1'
+    - label: 不需要
+      value: '2'
+  default_value: 需要
+  message: '科室归档率明细列表是否需要科室汇总行数据'
+  name: 科室归档率明细列表是否需要科室汇总行数据
+  type: radio
+
+qc.stats.archived.sample:
+  choice:
+    - label: 是
+      value: '1'
+    - label: 否
+      value: '0'
+  default_value: 是
+  message: '归档病历质量统计列表-归档病历是否抽检'
+  name: 归档病历质量统计列表-归档病历是否抽检
+  scope: 管理端
+  type: radio
+
+hospital.name:
+  default_value: ''
+  message: '这配置已经没啥用了'
+  name: 医院名称
+  scope: 管理端
+  type: string
+
+qc.department.sample.archive:
+  choice:
+    - label: 需要
+      value: '1'
+    - label: 不需要
+      value: '2'
+  default_value: 不需要
+  message: '科室质控抽取列表是否允许归档'
+  name: 科室质控抽取列表是否允许归档
+  scope: 管理端
+  type: radio
+
+qc.hospital.sample.archive:
+  choice:
+    - label: 需要
+      value: '1'
+    - label: 不需要
+      value: '2'
+  default_value: 不需要
+  message: '病案质控抽取列表是否允许归档'
+  name: 病案质控抽取列表是否允许归档
+  scope: 管理端
+  type: radio
+
+qc.firstpage.sample.archive:
+  choice:
+    - label: 需要
+      value: '1'
+    - label: 不需要
+      value: '2'
+  default_value: 不需要
+  message: '编码质控抽取列表是否允许归档'
+  name: 编码质控抽取列表是否允许归档
+  scope: 管理端
+  type: radio
+
+qc.expert.sample.archive:
+  choice:
+    - label: 需要
+      value: '1'
+    - label: 不需要
+      value: '2'
+  default_value: 不需要
+  message: '专家质控抽取列表是否允许归档'
+  name: 专家质控抽取列表是否允许归档
+  scope: 管理端
+  type: radio
+
+qc.stats.branch.target.field:
+  default_value: '入院记录24小时内完成率,手术记录24小时内完成率,出院记录24小时内完成率,病案首页24小时内完成率,抗菌药物使用记录符合率,手术相关记录完整率,植入物相关记录符合率,临床用血相关记录符合率,医师查房记录完整率,患者抢救记录及时完成率,出院患者病历2日归档率,出院患者病历归档完整率,主要诊断填写正确率,主要诊断编码正确率,主要手术填写正确率,主要手术编码正确率,不合理复制病历发生率,知情同意书规范签署率,甲级病历率'
+  message: '指标分析-全院、科室、医生病案指标展示列'
+  name: 指标分析-全院、科室、医生病案指标展示列
+  scope: 管理端
+  type: string
+
+qc.hospital.only.received:
+  choice:
+    - label: 是
+      value: '1'
+    - label: 否
+      value: '2'
+  default_value: 否
+  message: '病案质控是否只质控已签收的病历'
+  name: 病案质控只质控已签收的病历
+  scope: 管理端
+  type: radio
+
+qc.stats.ratingup.flag:
+  choice:
+    - label: 需要
+      value: '1'
+    - label: 不需要
+      value: '2'
+  default_value: 不需要
+  message: '需要的话，全院归档率页面显示整改后等级提升率列'
+  name: 全院归档率整改后等级提升率是否需要
+  scope: 管理端
+  type: radio
+
+qc.doctor.veto.departments:
+  default_value: ''
+  message: '如果为空，则全部科室强控，填写了科室名称，则填写的科室开启强控，其他科室不开启'
+  name: 开启强控的科室
+  scope: 医生端
+  type: string
+
+qc.document.catalog.field:
+  choice:
+    - label: 文书名
+      value: 'documentName'
+    - label: 模板类型
+      value: 'originType'
+  default_value: 文书名
+  message: '管理端审核页面左侧文书目录使用哪个字段去做对照'
+  name: 管理端审核页面左侧文书目录使用哪个字段去做对照
+  scope: 管理端
+  type: radio
+
+qc.check.backaudit.problem:
+  choice:
+    - label: 是
+      value: '1'
+    - label: 否
+      value: '2'
+  default_value: 是
+  message: '审核页面，退回重新质控必须在有问题情况下才可以操作'
+  name: 退回重新质控必须在有问题情况下才可以操作
+  scope: 管理端
+  type: radio
+
+qc.doctor.precheck.whitelist:
+  choice:
+    - label: print
+      value: 'print'
+    - label: submit
+      value: 'submit'
+  default_value: 'print'
+  message: '医生端是否调用提醒，填写print，表示打印不调用，precheck里面的方法都可以填进来'
+  name: 医生端是否调用提醒白名单
+  scope: 医生端
+  type: multi
+
+qc.caselevel.score.a:
+  default_value: '90'
+  message: '配置病历等级甲级分数'
+  name: 配置病历等级甲级分数
+  scope: 管理端
+  type: string
+
+qc.caselevel.score.b:
+  default_value: '75'
+  message: '配置病历等级乙级分数'
+  name: 配置病历等级乙级分数
+  scope: 管理端
+  type: string
+
+qc.active.tags:
+  choice:
+    - label: 是
+      value: '1'
+    - label: 否
+      value: '2'
+  default_value: 否
+  message: '若1，事中质控，运行病历抽取/病历库/抽取历史页面，显示重点病历标签列和筛选框；若2，不显示； 默认不显示'
+  name: 行病历是否展示重点病历标签列和筛选框
+  scope: 管理端
+  type: radio
+
+qc.complete.auditType:
+  choice:
+  - label: 科室质控
+    value: 'department'
+  - label: 病案质控
+    value: 'hospital'
+  - label: 编码质控
+    value: 'firstpage'
+  - label: 专家质控
+    value: 'expert'
+  default_value: 病案质控
+  message: 质控完成节点, 可多选
+  name: 质控完成节点
+  scope: 管理端
+  type: multi
+
+qc.archiveScore.overwrite.step:
+  choice:
+    - label: 不覆盖
+      value: ''
+    - label: 科室质控环节
+      value: 'department'
+    - label: 病案质控环节
+      value: 'hospital'
+    - label: 编码质控环节
+      value: 'firstpage'
+    - label: 专家质控环节
+      value: 'expert'
+  default_value: 不覆盖
+  message: 计算院级病案得分时，用来覆盖auditRecord.archiveScore字段的质控环节，以前的数据无法处理，设置之后才生效。
+  name: 哪个质控环节的分数可以覆盖归档病历院级病案得分的计算规则
+  scope: 管理端
+  type: radio
+
+qc.doc.time.field:
+  choice:
+  - label: 书写时间
+    value: '书写时间'
+  - label: 签名时间
+    value: '签名时间'
+  - label: 记录时间
+    value: '记录时间'
+  default_value: 书写时间
+  message: 质控详情页, 文书展示时间字段
+  name: 文书展示时间字段
+  scope: 管理端
+  type: multi
+
+qc.hospital.problem.auditType.filter:
+  choice:
+  - label: 病案质控
+    value: 'hospital'
+  - label: 编码质控
+    value: 'firstpage'
+  - label: 专家质控
+    value: 'expert'
+  - label: 科室质控
+    value: 'department'
+  - label: 事中质控
+    value: 'active'
+  default_value: 病案质控,编码质控,专家质控,科室质控,事中质控
+  message: 病案质控详情页, 问题日志质控节点下拉框可选过滤节点
+  name: 病案质控问题日志质控节点下拉框可选过滤节点
+  scope: 管理端
+  type: multi
+
+qc.firstpage.problem.auditType.filter:
+  choice:
+  - label: 病案质控
+    value: 'hospital'
+  - label: 编码质控
+    value: 'firstpage'
+  - label: 专家质控
+    value: 'expert'
+  - label: 科室质控
+    value: 'department'
+  - label: 事中质控
+    value: 'active'
+  default_value: 病案质控,编码质控,专家质控,科室质控,事中质控
+  message: 编码质控详情页, 问题日志质控节点下拉框可选过滤节点
+  name: 编码质控问题日志质控节点下拉框可选过滤节点
+  scope: 管理端
+  type: multi
+
+qc.expert.problem.auditType.filter:
+  choice:
+  - label: 病案质控
+    value: 'hospital'
+  - label: 编码质控
+    value: 'firstpage'
+  - label: 专家质控
+    value: 'expert'
+  - label: 科室质控
+    value: 'department'
+  - label: 事中质控
+    value: 'active'
+  default_value: 病案质控,编码质控,专家质控,科室质控,事中质控
+  message: 专家质控详情页, 问题日志质控节点下拉框可选过滤节点
+  name: 专家质控问题日志质控节点下拉框可选过滤节点
+  scope: 管理端
+  type: multi
+
+qc.department.problem.auditType.filter:
+  choice:
+  - label: 病案质控
+    value: 'hospital'
+  - label: 编码质控
+    value: 'firstpage'
+  - label: 专家质控
+    value: 'expert'
+  - label: 科室质控
+    value: 'department'
+  - label: 事中质控
+    value: 'active'
+  default_value: 病案质控,编码质控,专家质控,科室质控,事中质控
+  message: 科室质控详情页, 问题日志质控节点下拉框可选过滤节点
+  name: 科室质控问题日志质控节点下拉框可选过滤节点
+  scope: 管理端
+  type: multi
+
+qc.active.problem.auditType.filter:
+  choice:
+  - label: 病案质控
+    value: 'hospital'
+  - label: 编码质控
+    value: 'firstpage'
+  - label: 专家质控
+    value: 'expert'
+  - label: 科室质控
+    value: 'department'
+  - label: 事中质控
+    value: 'active'
+  default_value: 病案质控,编码质控,专家质控,科室质控,事中质控
+  message: 事中质控详情页, 问题日志质控节点下拉框可选过滤节点
+  name: 事中质控问题日志质控节点下拉框可选过滤节点
+  scope: 管理端
+  type: multi
+
+qc.fixed.hurry.auditType:
+  choice:
+  - label: 病案质控
+    value: 'hospital'
+  - label: 编码质控
+    value: 'firstpage'
+  - label: 专家质控
+    value: 'expert'
+  - label: 科室质控
+    value: 'department'
+  - label: 事中质控
+    value: 'active'
+  default_value: 病案质控,编码质控,专家质控,科室质控,事中质控
+  message: 管理端后加参数，与列表展示列有关
+  name: 列表展示列有关
+  scope: 管理端
+  type: multi
+
+qc.doctor.company.display:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 不显示
+    value: '2'
+  default_value: 不显示
+  message: 医生端公司简介是否显示
+  name: 医生端公司简介是否显示
+  scope: 医生端
+  type: radio
+
+
+qc.doctor.next.display:
+  choice:
+  - label: 显示
+    value: '1'
+  - label: 不显示
+    value: '2'
+  default_value: 显示
+  message: 医生端提交、打印强控弹窗继续按钮是否展示
+  name: 医生端提交、打印强控弹窗继续按钮是否展示
+  scope: 医生端
+  type: radio
+
+
+qc.doctor.print.veto.problemNum:
+  default_value: '3'
+  message: '打印、提交依据问题数量强控'
+  name: 打印、提交依据问题数量强控
+  scope: 医生端
+  type: string
+
+qc.department.case.range:
+  choice:
+  - label: 未出院
+    value: '1'
+  - label: 已出院
+    value: '2'
+  - label: 未提交
+    value: '3'
+  - label: 已提交
+    value: '4'
+  - label: '未签收'
+    value: '5'
+  - label: '已签收'
+    value: '6'
+  - label: '未编码'
+    value: '7'
+  - label: '已编码'
+    value: '8'
+  default_value: '已出院,未提交'
+  message: 科室质控病历范围
+  name: 科室质控病历范围
+  scope: 管理端
+  type: multi
+
+qc.hospital.case.range:
+  choice:
+  - label: 未出院
+    value: '1'
+  - label: 已出院
+    value: '2'
+  - label: 未提交
+    value: '3'
+  - label: 已提交
+    value: '4'
+  - label: '未签收'
+    value: '5'
+  - label: '已签收'
+    value: '6'
+  - label: '未编码'
+    value: '7'
+  - label: '已编码'
+    value: '8'
+  default_value: '已编码'
+  message: 病案质控病历范围
+  name: 病案质控病历范围
+  scope: 管理端
+  type: multi
+
+qc.expert.case.range:
+  choice:
+  - label: 未出院
+    value: '1'
+  - label: 已出院
+    value: '2'
+  - label: 未提交
+    value: '3'
+  - label: 已提交
+    value: '4'
+  - label: '未签收'
+    value: '5'
+  - label: '已签收'
+    value: '6'
+  - label: '未编码'
+    value: '7'
+  - label: '已编码'
+    value: '8'
+  default_value: ''
+  message: 专家质控病历范围
+  name: 专家质控病历范围
+  scope: 管理端
+  type: multi
+
+qc.firstpage.case.range:
+  choice:
+  - label: 未出院
+    value: '1'
+  - label: 已出院
+    value: '2'
+  - label: 未提交
+    value: '3'
+  - label: 已提交
+    value: '4'
+  - label: '未签收'
+    value: '5'
+  - label: '已签收'
+    value: '6'
+  - label: '未编码'
+    value: '7'
+  - label: '已编码'
+    value: '8'
+  default_value: '已签收'
+  message: 编码质控病历范围
+  name: 编码质控病历范围
+  scope: 管理端
+  type: multi
+
+qc.department.each.other.check:
+  choice:
+  - label: 支持
+    value: '1'
+  - label: 不支持
+    value: '2'
+  default_value: 不支持
+  message: 病案抽取是否支持科室互查
+  name: 病案抽取是否支持科室互查
+  scope: 管理端
+  type: radio

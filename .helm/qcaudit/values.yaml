@@ -1,0 +1,48 @@
+# Default values for qctools.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  grpcRepo: dockerdist.bdmd.com/qcaudit-api
+  gwRepo: dockerdist.bdmd.com/qcaudit-gw
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+  rpcport: 6000
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+nodeSelector: {}
+
+disableAccessControl: true
+iamDB: "iam"
+mqURL: amqp://rxthinking:gniknihtxr@rabbitmq.infra-default:5672/%2F?heartbeat=300
+mongoURI: mongodb://mongodb.infra-default:27017/?replicaSet=default
+redisUrl: "redis://redis.infra-default/0"
+cdssAddr: "http://openapi"
+qcetlRpc: "http://127.0.0.1:30000/rpc"
+aiURL: "http://localhost:30080"
+emrAddr: ""
+
+mysql:
+  host: mysql.infra-default
+  port: "3306"
+  user: root
+  password: rxthinkingmysql
+  db: qcmanager

@@ -1,0 +1,68 @@
+kind: pipeline
+type: docker
+name: dev
+
+steps:
+  # 构建
+  - name: api-image
+    image: 123.56.140.160:5000/drone-docker
+    settings:
+      username:
+        from_secret: "docker_user"
+      password:
+        from_secret: "docker_pass"
+      dockerfile: "Dockerfile"
+      repo: "123.56.140.160:5000/qcaudit"
+      registry: "123.56.140.160:5000"
+      tags: "${DRONE_BUILD_NUMBER}"
+    # commands:
+    #   - "docker build -t 123.56.140.160:5000/qcaudit:${DRONE_BUILD_NUMBER} ."
+    #   - "docker push 123.56.140.160:5000/qcaudit:${DRONE_BUILD_NUMBER}"
+# 生成pip包
+# - name: pypi
+#   image: dockerdist.bdmd.com/drone-python:3
+#   settings:
+#     gen_dockerfile: true
+#     unittest: false
+#     mark_latest: true
+#     time_version: true
+# 构建api docker镜像
+# - name: api-image
+#   image: dockerdist.bdmd.com/base/drone-plugin:d495cd7
+#   settings:
+#     repo: dockerdist.bdmd.com/qcaudit-api
+#     dockerfile: Dockerfile
+
+# 生成gateway
+# - name: gw
+#   image: "dockerdist.bdmd.com/docker.io/library/golang:1.14"
+#   commands:
+#     - go build -o qcaudit-gateway ./qcaudit-gateway
+# # 构建gateway docker镜像
+# - name: gw-image
+#   image: dockerdist.bdmd.com/base/drone-plugin:d495cd7
+#   settings:
+#     repo: dockerdist.bdmd.com/qcaudit-gw
+#     dockerfile: Dockerfile4GW
+
+# - name: harbor
+#   image: dockerdist.bdmd.com/base/drone-harbor:helm3.9.0
+#   pull: always
+#   settings:
+#     project: qc
+#     repo: qcaudit
+#     path: ".helm/qcaudit"
+    
+# # Send dingding notify message
+# - name: notify
+#   image: dockerdist.bdmd.com/drone-dingtalk-message
+#   settings:
+# # 钉钉群机器人的token
+#     token: 9c1efe9adadf463dec44635eb237d12b39cfecb0f20e9d96f8f0cceffa8487fb
+#     type: markdown
+#     tpl: .dingding.tpl
+# # 成功或失败均发消息
+#     when:
+#       status:
+#         - success
+#         - failure

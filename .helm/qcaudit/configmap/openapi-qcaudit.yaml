@@ -1,0 +1,21 @@
+entry:
+  http:
+  - name: qcaudit API
+    scheme: http
+    paths:
+    - /hosp/qc/v3
+    - /hosp/qc/v3/
+    backend: qcaudit
+    endpoint: http
+    protectedMode: optional
+backend:
+  qcaudit:
+    name: hosp qcaudit API Service
+    endpoints:
+      http:
+        name: Http Endpoint
+        type: http
+        http:
+          scheme: http
+          host: qcaudit.{{ .Release.Namespace }}
+  

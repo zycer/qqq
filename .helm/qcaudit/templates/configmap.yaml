@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openapi-{{ include "qcaudit.fullname" . }}
+  labels:
+  {{- include "qcaudit.selectorLabels" . | nindent 4 }}
+data:
+  openapi-qcaudit.yaml: |
+    entry:
+      http:
+      - name: qcaudit API
+        scheme: http
+        paths:
+        - /hosp/qc/v3
+        - /hosp/qc/v3/
+        backend: qcaudit
+        endpoint: http
+        protectedMode: optional
+    backend:
+      qcaudit:
+        name: hosp qcaudit API Service
+        endpoints:
+          http:
+            name: Http Endpoint
+            type: http
+            http:
+              scheme: http
+              host: qcaudit.{{ .Release.Namespace }}

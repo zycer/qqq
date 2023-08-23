@@ -1,0 +1,30 @@
+---
+kind: pipeline
+type: docker
+name: release
+
+trigger:
+  event:
+    - tag
+    - push
+steps:
+# Build pypi
+- name: pypi
+  image: dockerdist.bdmd.com/drone-python:3
+  pull: always
+  settings:
+    time_version: true
+# Send dingding notify message
+- name: notify
+  image: dockerdist.bdmd.com/drone-dingtalk-message
+  settings:
+# 钉钉群机器人的token
+    token: 9c1efe9adadf463dec44635eb237d12b39cfecb0f20e9d96f8f0cceffa8487fb
+    type: markdown
+    title: "${DRONE_REPO_NAME}-${DRONE_BUILD_STATUS}"
+    tpl: .dingding.tpl
+# 成功或失败均发消息
+    when:
+      status:
+        - success
+        - failure

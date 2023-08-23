@@ -1,0 +1,26 @@
+version: v1
+spec:
+  project:
+    name: hospqc
+    version: "1.0"
+    packages:
+    - path: ""
+      name: iyoudoctor.hosp.qc.v3.qcaudit
+      version: "1.0"
+      files:
+        - .*\.proto
+      targets:
+        - type: go
+          output_path: proto/protoc-gen-go
+          with_grpc: true
+          with_grpc_gateway: true
+    - path: ""
+      name: iyoudoctor.hosp.qc.v3.sample
+      version: "1.0"
+      files:
+        - .*\.proto
+      targets:
+        - type: go
+          output_path: proto/protoc-gen-go
+          with_grpc: true
+          with_grpc_gateway: true

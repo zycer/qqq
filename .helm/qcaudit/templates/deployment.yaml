@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "qcaudit.fullname" . }}
+  labels:
+    {{- include "qcaudit.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "qcaudit.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "qcaudit.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: grpc
+          image: "{{ .Values.image.grpcRepo }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --host
+            - 0.0.0.0
+            - --port
+            - "6000"
+            {{ if (.Values.global).debug }}- --debug{{ end }}
+            {{ if .Values.disableAccessControl }}- --disable-access-control{{ end }}
+            - --db-host
+            - {{ .Values.mysql.host }}
+            - --db-port
+            - "{{ .Values.mysql.port }}"
+            - --db-uname
+            - {{ .Values.mysql.user }}
+            - --db-password
+            - {{ .Values.mysql.password }}
+            - --db-database
+            - {{ .Values.mysql.db }}
+            - --ai-url
+            - {{ .Values.aiURL }}
+            - --mq-url
+            - {{ .Values.mqURL }}
+            - --mongodb-uri
+            - {{ .Values.mongoURI }}
+            - --iam-database
+            - {{ .Values.iamDB }}
+            - --emr-adapter
+            - "{{ .Values.emrAddr }}"
+            - --cdss-addr
+            - "{{ .Values.cdssAddr }}"
+            - --qcetl-rpc
+            - "{{ .Values.qcetlRpc }}"
+            - --redis-addr
+            - {{ .Values.redisUrl }}
+          ports:
+            - name: grpc
+              containerPort: 6000
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        - name: gw
+          image: "{{ .Values.image.gwRepo }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --host
+            - 0.0.0.0
+            - --port
+            - "8000"
+            - --api-port
+            - "6000"
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/bin/sh", "-c", "echo this pod is stopping. > /stop.log && sleep 60s"]
+  

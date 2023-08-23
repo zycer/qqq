@@ -1,0 +1,9 @@
+FROM dockerdist.bdmd.com/base/alpine-go:v1.0
+LABEL description="hospqc v3 gw service"
+
+# Copy libraries
+ADD qcaudit-gateway /bin/
+# Expose
+EXPOSE 8024
+# Entrypoint
+ENTRYPOINT [ "qcaudit-gateway" ]
